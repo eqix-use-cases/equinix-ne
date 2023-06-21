@@ -1,0 +1,8 @@
+notification_email = []
+route_os = "C8000V"
+route_os_version = "17.06.01a"
+package_code = "network-essentials"
+core_count = 2
+term_length = 12
+dc_code = "DA"
+account_name = ""
