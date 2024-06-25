@@ -5,6 +5,7 @@ resource "random_pet" "this" {
 data "equinix_network_account" "this" {
   metro_code = var.dc_code
   name       = var.account_name
+  project_id = var.fabric_project_id
 }
 
 resource "tls_private_key" "key" {
@@ -47,7 +48,7 @@ resource "equinix_network_device" "this" {
   notifications   = var.notification_email
   hostname        = random_pet.this.id
   term_length     = var.term_length
-  account_number  = 133100
+  account_number  = data.equinix_network_account.this.number
   version         = var.route_os_version
   core_count      = var.core_count
   interface_count = 24
