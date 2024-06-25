@@ -37,19 +37,20 @@ resource "equinix_network_acl_template" "this" {
 }
 
 resource "equinix_network_device" "this" {
-  name            = lower("${random_pet.this.id}-${data.equinix_network_account.this.metro_code}")
+  name            = lower("${random_pet.this.id}-DA")
   acl_template_id = equinix_network_acl_template.this.uuid
   self_managed    = true
   byol            = true
-  metro_code      = data.equinix_network_account.this.metro_code
+  metro_code      = "DA"
   type_code       = var.route_os
   package_code    = var.package_code
   notifications   = var.notification_email
   hostname        = random_pet.this.id
   term_length     = var.term_length
-  account_number  = data.equinix_network_account.this.number
+  account_number  = 133100
   version         = var.route_os_version
   core_count      = var.core_count
+  interface_count = 24
   ssh_key {
     username = equinix_network_ssh_key.this.name
     key_name = equinix_network_ssh_key.this.name
